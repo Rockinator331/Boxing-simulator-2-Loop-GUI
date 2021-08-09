@@ -1,9 +1,93 @@
-_G.Auto4 = true
-	while _G.Auto4 do
-		wait(0.1)
-		for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-			if v.Name == "Dumbell" then v:Activate() end
+local BoxingSimulator2Gui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Fighter = Instance.new("TextButton")
+local Normal = Instance.new("TextButton")
+local Plr = Instance.new("TextBox")
+local Creator = Instance.new("TextLabel")
+local Quit = Instance.new("TextButton")
 
+BoxingSimulator2Gui.Archivable = false
+BoxingSimulator2Gui.Name = "Boxing Simulator2 Gui"
+BoxingSimulator2Gui.Parent = game.CoreGui
 
-		end
-	end
+Frame.Parent = BoxingSimulator2Gui
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.BackgroundTransparency = 0.25
+Frame.Position = UDim2.new(0, 1080, 0, 430)
+Frame.Size = UDim2.new(0, 270, 0, 270)
+Frame.Draggable = true
+
+Fighter.Name = "Fighter"
+Fighter.Parent = Frame
+Fighter.BackgroundColor3 = Color3.new(0, 0, 0)
+Fighter.BackgroundTransparency = 0.5
+Fighter.BorderColor3 = Color3.new(1, 1, 1)
+Fighter.Position = UDim2.new(0, 20, 0, 160)
+Fighter.Size = UDim2.new(0, 100, 0, 50)
+Fighter.Font = Enum.Font.Code
+Fighter.FontSize = Enum.FontSize.Size18
+Fighter.Text = "Loop"
+Fighter.TextColor3 = Color3.new(0.4, 0.6, 1)
+Fighter.TextSize = 15
+Fighter.MouseButton1Click:Connect(function(fighterplyr)
+	repeat
+		wait()
+		game:GetService("ReplicatedStorage").Remotes.Human_Punch:FireServer(game:GetService("Players").LocalPlayer.Character.RightHand, "RightPunch", game:GetService("Players")[Plr.Text].Character.RightHand, 5, true, "RightPunch", game:GetService("Players").LocalPlayer.Backpack.Boxing.Handle.Hit, 5)
+	until game.Players[Plr.Text].Character.Humanoid.Health == 0
+end)
+
+Normal.Name = "Normal"
+Normal.Parent = Frame
+Normal.BackgroundColor3 = Color3.new(0, 0, 0)
+Normal.BackgroundTransparency = 0.5
+Normal.BorderColor3 = Color3.new(1, 1, 1)
+Normal.Position = UDim2.new(0, 150, 0, 160)
+Normal.Size = UDim2.new(0, 100, 0, 50)
+Normal.Font = Enum.Font.Code
+Normal.FontSize = Enum.FontSize.Size18
+Normal.Text = "Loop"
+Normal.TextColor3 = Color3.new(0.4, 0.6, 1)
+Normal.TextSize = 15
+Normal.MouseButton1Click:Connect(function(normalplyr)
+	repeat
+		wait()
+		game:GetService("ReplicatedStorage").Remotes.Human_Punch:FireServer(game:GetService("Players").LocalPlayer.Character.RightHand, "RightPunch", game:GetService("Players")[Plr.Text].Character.RightHand, 5, true, "RightPunch", game:GetService("Players").LocalPlayer.Backpack.Boxing.Handle.Hit, 5)
+	until game.Players[Plr.Text].Character.Humanoid.Health == 0
+end)
+
+Plr.Name = "Plr"
+Plr.Parent = Frame
+Plr.BackgroundColor3 = Color3.new(0, 0, 0)
+Plr.BackgroundTransparency = 0.5
+Plr.Position = UDim2.new(0, 50, 0, 80)
+Plr.Size = UDim2.new(0, 170, 0, 40)
+Plr.Text = "NAME"
+Plr.TextColor3 = Color3.new(1, 1, 1)
+
+Creator.Name = "Creator"
+Creator.Parent = Frame
+Creator.Active = true
+Creator.BackgroundColor3 = Color3.new(0, 0, 0)
+Creator.BackgroundTransparency = 1
+Creator.BorderColor3 = Color3.new(0, 0, 0)
+Creator.Position = UDim2.new(0, 40, 0, 30)
+Creator.Size = UDim2.new(0, 190, 0, 30)
+Creator.Font = Enum.Font.Code
+Creator.FontSize = Enum.FontSize.Size24
+Creator.Text = "Boxing"
+Creator.TextColor3 = Color3.new(1, 1, 1)
+Creator.TextSize = 20
+
+Quit.Name = "Quit"
+Quit.Parent = Frame
+Quit.BackgroundColor3 = Color3.new(0, 0, 0)
+Quit.BackgroundTransparency = 1
+Quit.Position = UDim2.new(0, 240, 0, 0)
+Quit.Size = UDim2.new(0, 30, 0, 30)
+Quit.Text = "X"
+Quit.TextColor3 = Color3.new(0.666667, 0, 0)
+Quit.MouseButton1Click:Connect(function(destroy)
+	BoxingSimulator2Gui:Remove()
+end)
+warn("Loop Gui Loaded!")
